@@ -1,7 +1,7 @@
 package = "jasmine"
 version = "dev-1"
 source = {
-   url = "git+https://github.com/holson1/roshi.git"
+   url = "git+https://github.com/holson1/panini_cafe.git"
 }
 description = {
    summary = "`luarocks install watcher``lua build.lua`",
@@ -9,7 +9,7 @@ description = {
 `luarocks install watcher`
 `lua build.lua`
 ]],
-   homepage = "https://github.com/holson1/roshi",
+   homepage = "https://github.com/holson1/panini_cafe",
    license = "*** please specify a license ***"
 }
 dependencies = {

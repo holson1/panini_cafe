@@ -17,3 +17,7 @@ function round(x)
         return flr(x)
     end
 end
+
+function print_centered(str, y, col)
+    print(str, 64 - (#str * 2), y, col) 
+end

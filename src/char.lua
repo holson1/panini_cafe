@@ -11,6 +11,7 @@ function init_char()
             y=48
         },
         holding=nil,
+        selection_a={230,230,230,230,230,230,232,232,232,232,234,234,236,236,236,230,230,230,230,230,230,64,64,64,64,64,64,64,64,230,230,230},
         update_position=update_position,
         update=update_char,
 
@@ -19,9 +20,10 @@ function init_char()
         end,
 
         draw_selection=function(self)
-            if (t%16 > 8) then
-                spr(232, self.selection.x, self.selection.y, 2, 2)
-            end
+            spr(self.selection_a[(t%32) + 1], self.selection.x, self.selection.y, 2, 2)
+            -- if (t%16 > 8) then
+            --     spr(232, self.selection.x, self.selection.y, 2, 2)
+            -- end
             if (self.holding) then
                 spr(self.holding.s, self.x, self.y - 8, 2, 2)
             end

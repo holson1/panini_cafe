@@ -7,17 +7,17 @@ items.bread = {
 
 items.cheese = {
     name = 'cheese',
-    s = 166
+    s = 134
 }
 
 items.tomato = {
     name = 'tomato',
-    s = 168
+    s = 166
 }
 
 items.eggplant = {
     name = 'eggplant',
-    s = 170
+    s = 14
 }
 
 items.uncooked_panini = {
@@ -28,13 +28,13 @@ items.uncooked_panini = {
 
 items.cooked_panini = {
     name = 'cooked_panini',
-    s = 228,
+    s = 226,
     ingredients={}
 }
 
 items.burnt_panini = {
     name = 'burnt_panini',
-    s = 230
+    s = 228
 }
 
 ingredients = {
