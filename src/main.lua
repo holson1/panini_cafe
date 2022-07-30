@@ -10,7 +10,7 @@ function _init()
     customers=new_group(customer)
     panini_presses = new_group(panini_press)
     balloons = new_group(balloon)
-    state='title'
+    state='intro'
     customer_counter = 1
     customer_countdown = 100
     stars = 3
@@ -49,15 +49,27 @@ function _update()
         end
     end
 
-    if (state == 'title') then
-        if (title_counter <= 900) then
+    if (state == 'intro') then
+
+        if (title_counter <= 180) then
             title_counter += 1
+        else
+            state = 'title'
         end
+
+        intro:update(title_counter)
+        for d in all(dust) do
+            d:update()
+        end
+
+        return
+    end
+
+    if (state == 'title') then
 
         if (btnp(5)) then
             restart()
         end
-
 
         return
     end
@@ -143,27 +155,58 @@ function _draw()
     cls()
     camera(0,0)
 
+    if (state == 'intro') then
+
+        intro:draw(title_counter)
+
+        for d in all(dust) do
+            d:draw()
+        end
+        return
+    end
+
+
     if (state == 'title') then
         draw_background()
 
-        -- circfill(40,48,28,1)
-        -- circfill(72,42,20,1)
-        -- circfill(98,46,16,1)
-        -- circfill(90,56,18,1)
-        -- circfill(66,60,22,1)
+        -- local sx, sy = (142 % 16) * 8, flr(142 \ 16) * 8
+        -- sspr(sx,sy,16,16,16,-8,112,112)
+        -- spr(136,20,40,6,2) 
+        --spr(136,64,44,6,2)
 
-        local sx, sy = (142 % 16) * 8, flr(142 \ 16) * 8
-        sspr(sx,sy,16,16,16,-8,96,96)
+        sspr2(142,16,16,12,-10,6.5)
 
-        spr(136,20,40,6,2) 
-        spr(136,64,44,6,2)
-        spr(168,30,60,4,2)
-        spr(172,64,60,4,2)
+        sspr2(34,16,16,68,28,2)
 
-        print('start', 64, 96, 1)
-        print('tutorial', 64, 104, 1)
+        sspr2(136,48,16,54,50,1.25)
+        sspr2(136,48,16,24,36,1.25)
 
-        print_centered('2022 moonbike games', 120, 1)
+
+        sspr2(168,32,16,32,70,1)
+        sspr2(172,32,16,64,70,1)
+
+
+        if (t % 32 > 28) then
+            print_centered('press x', 104, 1, 1)
+        elseif (t % 32 > 24) then
+            print_centered('press x', 104, 13, 1)
+        elseif (t % 32 > 20) then
+            print_centered('press x', 104, 6, 1)
+        elseif (t % 32 > 16) then
+            print_centered('press x', 104, 7, 1)
+        elseif (t % 32 > 12) then
+            print_centered('press x', 104, 6, 1)
+        elseif (t % 32 > 8) then
+            print_centered('press x', 104, 13, 1)
+        elseif (t % 32 > 4) then
+            print_centered('press x', 104, 1, 1)
+        else
+            print_centered('press x', 104, 0, 0)
+        end
+
+        -- print_outlined('tutorial', 64, 104, 6, 1)
+
+        print_centered('2022 moonbike games', 120, 6, 1)
         return
     end
 
@@ -292,12 +335,15 @@ function draw_background()
     spr(100,112,0,2,2, true)
 
     -- banner
-    -- spr(192,16,0,2,2)
-    -- spr(194,32,0,2,2)
-    -- spr(196,48,0,2,2)
-    -- spr(198,64,0,2,2)
-    -- spr(200,80,0,2,2)
-    -- spr(202,96,0,2,2)
+
+    if (state ~= 'title' and state ~= 'intro') then
+        spr(192,16,0,2,2)
+        spr(194,32,0,2,2)
+        spr(196,48,0,2,2)
+        spr(198,64,0,2,2)
+        spr(200,80,0,2,2)
+        spr(202,96,0,2,2)
+    end
 
     -- floor
     for i=0,8 do
@@ -327,7 +373,10 @@ function draw_background()
     spr(072,80,88,2,2)
     spr(072,96,88,2,2, true)
     spr(074,112,88,2,2, true)
-    print('PORTA VIA', 78, 96, 15)
+
+    if (state ~= 'title' and state ~= 'intro') then
+        print('PORTA VIA', 78, 96, 15)
+    end
 
     -- garbage can
     spr(238,0,24,2,2)
