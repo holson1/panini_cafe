@@ -191,6 +191,7 @@ customer = {
             self.choices -= 1
         end
 
+        sfx(rnd({3,5,6,7,8}))
         self:display_order()
     end,
 
